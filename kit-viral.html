@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kit Viral — Prompts para Posts que Viralizam</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #1a1a1a;
+    --border: #2a2a2a;
+    --border2: #3a3a3a;
+    --text: #f0ede8;
+    --muted: #888880;
+    --accent: #c8f53a;
+    --accent2: #a8d820;
+    --accent-dim: rgba(200,245,58,0.12);
+    --accent-dim2: rgba(200,245,58,0.06);
+    --red: #ff5c5c;
+    --blue: #5c9fff;
+    --purple: #a78bfa;
+    --orange: #fb923c;
+    --pink: #f472b6;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(200,245,58,0.13) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 80% 80%, rgba(167,139,250,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent-dim);
+    border: 1px solid rgba(200,245,58,0.3);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero h1 span {
+    color: var(--accent);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--muted);
+    max-width: 480px;
+    margin: 1.5rem auto 2.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #0a0a0a;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    animation: fadeUp 0.6s 0.3s ease both;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .hero-cta:hover { background: var(--accent2); transform: translateY(-2px); }
+  .hero-cta svg { width: 16px; height: 16px; }
+
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-label { font-size: 12px; color: var(--muted); }
+
+  /* ── GRID INTRO ── */
+  .section { padding: 5rem 1.5rem; max-width: 900px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .section-desc { color: var(--muted); max-width: 520px; font-size: 15px; }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    margin-top: 3rem;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .feature {
+    background: var(--surface);
+    padding: 1.75rem;
+    transition: background 0.2s;
+  }
+  .feature:hover { background: var(--surface2); }
+  .feature-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    margin-bottom: 1rem;
+  }
+  .feature h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .feature p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* ── PROMPTS ── */
+  .prompts-section { padding: 5rem 1.5rem; max-width: 900px; margin: 0 auto; }
+
+  .controls-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 2.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .ctrl { display: flex; flex-direction: column; gap: 5px; flex: 1; min-width: 160px; }
+  .ctrl label { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+  .ctrl select, .ctrl input {
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    height: 38px;
+    padding: 0 12px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .ctrl select:focus, .ctrl input:focus { border-color: var(--accent); }
+  .ctrl select option { background: #1a1a1a; }
+
+  .cards-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .pcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .pcard:hover { border-color: var(--border2); }
+  .pcard.open { border-color: rgba(200,245,58,0.3); }
+
+  .pcard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.25rem;
+    cursor: pointer;
+    gap: 12px;
+  }
+  .pcard-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+  .pcard-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    min-width: 20px;
+  }
+  .pcard-info { flex: 1; min-width: 0; }
+  .pcard-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .pcard-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  .tag {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .tag-viral { background: rgba(200,245,58,0.15); color: var(--accent); }
+  .tag-autoridade { background: rgba(167,139,250,0.15); color: var(--purple); }
+  .tag-conexao { background: rgba(92,159,255,0.15); color: var(--blue); }
+  .tag-curiosidade { background: rgba(251,146,60,0.15); color: var(--orange); }
+  .tag-emocao { background: rgba(244,114,182,0.15); color: var(--pink); }
+
+  .pcard-toggle {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--border2);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted);
+    font-size: 18px;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .pcard.open .pcard-toggle {
+    background: var(--accent-dim);
+    border-color: rgba(200,245,58,0.3);
+    color: var(--accent);
+    transform: rotate(45deg);
+  }
+
+  .pcard-body { display: none; padding: 0 1.25rem 1.25rem; }
+  .pcard.open .pcard-body { display: block; }
+
+  .gatilho-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .gatilho-badge::before {
+    content: '⚡';
+    font-size: 11px;
+  }
+
+  .prompt-textarea {
+    background: #0d0d0d;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #c8c4bc;
+    line-height: 1.75;
+    white-space: pre-wrap;
+    width: 100%;
+    min-height: 120px;
+  }
+
+  .tip-box {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: var(--accent-dim2);
+    border-left: 2px solid rgba(200,245,58,0.4);
+    border-radius: 0 6px 6px 0;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .tip-box strong { color: var(--accent); font-weight: 500; }
+
+  .copy-btn {
+    margin-top: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: transparent;
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .copy-btn.copied { border-color: var(--accent); color: var(--accent); }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .footer strong { color: var(--accent); font-weight: 600; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+  @media (max-width: 600px) {
+    .hero-stats { gap: 1.25rem; }
+    .pcard-left { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Marketing Digital &amp; Tech</div>
+  <h1>Kit<span>Viral</span></h1>
+  <p class="hero-sub">7 estruturas de posts testadas para gerar alcance, autoridade e conexão — adaptáveis para qualquer nicho.</p>
+  <a href="#prompts" class="hero-cta">
+    Acessar os prompts
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8l5 5 5-5"/></svg>
+  </a>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">7</span><span class="stat-label">Estruturas virais</span></div>
+    <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Nichos compatíveis</span></div>
+    <div class="stat"><span class="stat-num">5</span><span class="stat-label">Gatilhos mentais</span></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section">
+  <p class="section-label">O que você vai encontrar</p>
+  <h2 class="section-title">Prompts que fazem o algoritmo trabalhar por você</h2>
+  <p class="section-desc">Cada estrutura foi criada com base em gatilhos mentais comprovados. Adapte ao seu nicho e publique.</p>
+  <div class="features-grid">
+    <div class="feature">
+      <div class="feature-icon" style="background:rgba(200,245,58,0.12);">⚡</div>
+      <h3>Gatilhos estratégicos</h3>
+      <p>Cada prompt ativa um gatilho específico: curiosidade, autoridade, emoção, prova social ou polêmica.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon" style="background:rgba(92,159,255,0.12);">🎯</div>
+      <h3>Adaptável ao nicho</h3>
+      <p>Selecione seu nicho e a rede social. Os campos se ajustam automaticamente com exemplos do seu mercado.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon" style="background:rgba(167,139,250,0.12);">📋</div>
+      <h3>Copie e use agora</h3>
+      <p>Um clique para copiar o prompt completo. Cole no ChatGPT, Claude ou use diretamente como roteiro.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon" style="background:rgba(251,146,60,0.12);">💡</div>
+      <h3>Dicas de uso</h3>
+      <p>Cada estrutura vem com uma dica estratégica para maximizar o alcance do post gerado.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- PROMPTS -->
+<section class="prompts-section" id="prompts">
+  <p class="section-label">Arsenal de prompts</p>
+  <h2 class="section-title">Escolha sua estrutura</h2>
+  <p class="section-desc" style="margin-bottom:0;">Personalize pelo nicho e rede social. Depois copie e use.</p>
+
+  <div class="controls-bar" style="margin-top:2rem;">
+    <div class="ctrl">
+      <label>Nicho</label>
+      <select id="nicho">
+        <option value="mktdigital">Marketing Digital</option>
+        <option value="fitness">Fitness / Emagrecimento</option>
+        <option value="financas">Finanças Pessoais</option>
+        <option value="negocios">Negócios / Empreendedorismo</option>
+        <option value="saude">Saúde e Bem-estar</option>
+        <option value="relacionamentos">Relacionamentos</option>
+        <option value="educacao">Educação / Carreiras</option>
+        <option value="tech">Tecnologia / IA</option>
+        <option value="personalizado">Personalizado...</option>
+      </select>
+    </div>
+    <div class="ctrl" id="custom-wrap" style="display:none;">
+      <label>Digite o nicho</label>
+      <input type="text" id="custom-nicho" placeholder="ex: coaching espiritual" />
+    </div>
+    <div class="ctrl">
+      <label>Rede social</label>
+      <select id="rede">
+        <option value="Instagram">Instagram</option>
+        <option value="TikTok">TikTok</option>
+        <option value="LinkedIn">LinkedIn</option>
+        <option value="Twitter/X">Twitter/X</option>
+        <option value="YouTube Shorts">YouTube Shorts</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="cards-list" id="cards"></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>Feito com estratégia e intenção · <strong>Kit Viral</strong></p>
+  <p style="margin-top:6px;font-size:12px;">Use, adapte e publique. Os resultados são seus.</p>
+</footer>
+
+<script>
+const prompts = [
+  {
+    titulo: "A Virada de Mesa",
+    desc: "Quebra de crença + revelação surpreendente",
+    tag: "viral", tagLabel: "viral",
+    gatilho: "Curiosidade + Surpresa",
+    estrutura: `Tudo que te ensinaram sobre [CRENÇA COMUM DO NICHO] está errado.
+
+Eu fiz [AÇÃO OPOSTA AO SENSO COMUM] por [PERÍODO] e o resultado foi [RESULTADO SURPREENDENTE].
+
+Aqui está o que ninguém fala sobre [TEMA DO NICHO]:
+
+→ [INSIGHT 1 contra-intuitivo]
+→ [INSIGHT 2 contra-intuitivo]
+→ [INSIGHT 3 contra-intuitivo]
+
+A verdade é que [GRANDE REVELAÇÃO SOBRE O NICHO].
+
+Se você está em [NICHO], precisa parar de [ERRO COMUM] e começar a [NOVO COMPORTAMENTO].
+
+Salva esse post. Você vai precisar.`,
+    tip: "Funciona melhor quando a crença errada é algo que o público já faz ou acredita fervorosamente."
+  },
+  {
+    titulo: "O Framework dos 3 Pilares",
+    desc: "Método didático que posiciona como autoridade",
+    tag: "autoridade", tagLabel: "autoridade",
+    gatilho: "Autoridade + Utilidade",
+    estrutura: `[NÚMERO] anos em [NICHO] me ensinaram que existe 1 framework que separa quem [RESULTADO DESEJADO] de quem [RESULTADO NEGATIVO].
+
+Chamo de [NOME CRIATIVO DO MÉTODO].
+
+Pilar 1 — [NOME]: [EXPLICAÇÃO CURTA]
+A maioria faz [ERRO COMUM]. O certo é [CORREÇÃO].
+
+Pilar 2 — [NOME]: [EXPLICAÇÃO CURTA]
+Sem isso, [CONSEQUÊNCIA NEGATIVA].
+
+Pilar 3 — [NOME]: [EXPLICAÇÃO CURTA]
+É aqui que [TRANSFORMAÇÃO ACONTECE].
+
+Quando você une os 3, [BENEFÍCIO FINAL PODEROSO].
+
+Qual dos 3 pilares você ainda não tem? Comenta aqui.`,
+    tip: "Peça para o aluno nomear o framework com as iniciais formando uma palavra. Torna o método memorável e compartilhável."
+  },
+  {
+    titulo: "O Dia a Dia Real",
+    desc: "Storytelling de bastidores que gera conexão genuína",
+    tag: "conexao", tagLabel: "conexão",
+    gatilho: "Identificação + Emoção",
+    estrutura: `Às [HORA] de [DIA DA SEMANA], eu estava [SITUAÇÃO REAL E ESPECÍFICA DO NICHO].
+
+[DESCREVE O MOMENTO COM DETALHES SENSORIAIS].
+
+E pensei: [PENSAMENTO HONESTO E VULNERÁVEL].
+
+Naquela hora, eu lembrei que [LIÇÃO APRENDIDA NA PRÁTICA].
+
+Hoje eu sei que [TRANSFORMAÇÃO / CRENÇA ATUAL].
+
+Se você também já sentiu [EMOÇÃO UNIVERSAL DO NICHO], saiba que [MENSAGEM DE VALIDAÇÃO].
+
+Me conta nos comentários se você já passou por isso.`,
+    tip: "Quanto mais específico o horário, o dia e o cenário, mais real parece — e mais o algoritmo entende que as pessoas estão se identificando."
+  },
+  {
+    titulo: "O Antes e Depois Ampliado",
+    desc: "Transformação com prova social e detalhes do processo",
+    tag: "viral", tagLabel: "viral",
+    gatilho: "Esperança + Prova Social",
+    estrutura: `Em [PERÍODO ANTERIOR], eu/meu cliente estava:
+✗ [PROBLEMA 1 específico do nicho]
+✗ [PROBLEMA 2 específico do nicho]
+✗ [PROBLEMA 3 específico do nicho]
+
+Depois de aplicar [MÉTODO/ESTRATÉGIA], em [PERÍODO], o resultado foi:
+✓ [RESULTADO 1 com número/especificidade]
+✓ [RESULTADO 2 com número/especificidade]
+✓ [RESULTADO 3 com número/especificidade]
+
+O que mudou? Uma coisa: [INSIGHT CENTRAL DO SEU MÉTODO].
+
+Não foi sorte. Não foi acaso. Foi [PROCESSO ESPECÍFICO].
+
+Você está no "antes" agora? Me conta qual é o seu maior obstáculo em [NICHO].`,
+    tip: "Use números reais sempre que possível. Especificidade = credibilidade."
+  },
+  {
+    titulo: "A Lista Polêmica",
+    desc: "Opinião forte que divide e engaja ao mesmo tempo",
+    tag: "viral", tagLabel: "viral",
+    gatilho: "Polêmica + Curiosidade",
+    estrutura: `Coisas que eu nunca mais vou fazer em [NICHO] (e por quê):
+
+1. [PRÁTICA COMUM] — [MOTIVO INESPERADO]
+2. [PRÁTICA COMUM] — [MOTIVO INESPERADO]
+3. [PRÁTICA COMUM] — [MOTIVO INESPERADO]
+4. [PRÁTICA COMUM] — [MOTIVO INESPERADO]
+5. [PRÁTICA COMUM] — [MOTIVO INESPERADO]
+
+Cada um desses me custou [TEMPO/DINHEIRO/ENERGIA] antes de entender que existia um caminho melhor.
+
+O caminho melhor? [SÍNTESE DO SEU POSICIONAMENTO].
+
+Discorda de algum? Me fala qual.`,
+    tip: "O convite para discordar no final é intencional — comentários de discordância geram tanto alcance quanto os de concordância."
+  },
+  {
+    titulo: "A Pergunta que Para o Scroll",
+    desc: "Abertura com pergunta poderosa + conteúdo rico",
+    tag: "curiosidade", tagLabel: "curiosidade",
+    gatilho: "Curiosidade + Autoavaliação",
+    estrutura: `Por que [PERFIL DO SEU PÚBLICO] que [FAZ AÇÃO CERTA] ainda não consegue [RESULTADO DESEJADO]?
+
+A resposta não é falta de esforço.
+
+É [CAUSA RAIZ SURPREENDENTE].
+
+Deixa eu te mostrar como isso funciona:
+
+→ Você faz [COMPORTAMENTO A]
+→ Mas por trás, está acontecendo [MECANISMO OCULTO]
+→ Isso cria [EFEITO INDESEJADO]
+→ Que impede [RESULTADO]
+
+A solução? Não é fazer mais. É [ABORDAGEM DIFERENTE].
+
+Salva + Compartilha com alguém que precisa ouvir isso.`,
+    tip: "A pergunta de abertura funciona como um espelho — o público sente que o post foi escrito especificamente para ele."
+  },
+  {
+    titulo: "A Confissão Corajosa",
+    desc: "Vulnerabilidade estratégica que humaniza e conecta",
+    tag: "emocao", tagLabel: "emoção",
+    gatilho: "Vulnerabilidade + Identificação",
+    estrutura: `Vou ser honesto/a sobre algo que raramente falo:
+
+[CONFISSÃO REAL SOBRE UMA DIFICULDADE OU ERRO NO NICHO].
+
+Durante [PERÍODO], eu acreditei que [CRENÇA LIMITANTE].
+
+Isso me fez [CONSEQUÊNCIA NEGATIVA].
+
+Só mudou quando [MOMENTO DE VIRADA].
+
+Hoje entendo que [APRENDIZADO TRANSFORMADOR].
+
+Se você também carrega [PESO/MEDO/CRENÇA SEMELHANTE], saiba:
+não é fraqueza. É humano.
+
+E existe um caminho. [TEASER DO PRÓXIMO PASSO].`,
+    tip: "A confissão precisa ser real, mas estratégica — deve levar naturalmente ao que você ensina como solução."
+  }
+];
+
+const nichos = {
+  mktdigital: { label: "marketing digital", ex: "precisa de muitos seguidores para vender" },
+  fitness:    { label: "fitness", ex: "precisa sofrer para emagrecer" },
+  financas:   { label: "finanças pessoais", ex: "precisa ganhar mais para investir" },
+  negocios:   { label: "negócios", ex: "precisa de muito capital para começar" },
+  saude:      { label: "saúde e bem-estar", ex: "saúde é genética, não escolha" },
+  relacionamentos: { label: "relacionamentos", ex: "amor verdadeiro não precisa de esforço" },
+  educacao:   { label: "educação e carreiras", ex: "precisa de experiência para conseguir vaga boa" },
+  tech:       { label: "tecnologia e IA", ex: "precisa saber programar para usar IA" },
+  personalizado: { label: "", ex: "[CRENÇA COMUM DO NICHO]" }
+};
+
+function getNicho() {
+  const sel = document.getElementById('nicho').value;
+  if (sel === 'personalizado') {
+    const v = document.getElementById('custom-nicho').value.trim();
+    return { label: v || 'seu nicho', ex: '[CRENÇA COMUM DO NICHO]' };
+  }
+  return nichos[sel];
+}
+
+function renderText(p) {
+  const n = getNicho();
+  return p.estrutura
+    .replace(/\[NICHO\]/g, n.label)
+    .replace(/\[CRENÇA COMUM DO NICHO\]/g, n.ex);
+}
+
+function buildCards() {
+  const c = document.getElementById('cards');
+  c.innerHTML = '';
+  prompts.forEach((p, i) => {
+    const d = document.createElement('div');
+    d.className = 'pcard';
+    d.id = 'pc' + i;
+    d.innerHTML = `
+      <div class="pcard-header" onclick="toggle(${i})">
+        <div class="pcard-left">
+          <span class="pcard-num">0${i+1}</span>
+          <div class="pcard-info">
+            <div class="pcard-title">
+              ${p.titulo}
+              <span class="tag tag-${p.tag}">${p.tagLabel}</span>
+            </div>
+            <div class="pcard-desc">${p.desc}</div>
+          </div>
+        </div>
+        <div class="pcard-toggle">+</div>
+      </div>
+      <div class="pcard-body">
+        <div class="gatilho-badge">Gatilho: ${p.gatilho}</div>
+        <div class="prompt-textarea" id="pt${i}"></div>
+        <div class="tip-box"><strong>Dica:</strong> ${p.tip}</div>
+        <button class="copy-btn" id="cb${i}" onclick="copyP(${i})">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="5" width="9" height="9" rx="1.5"/><path d="M3 11V3a1 1 0 011-1h8"/></svg>
+          Copiar prompt
+        </button>
+      </div>
+    `;
+    c.appendChild(d);
+  });
+  updateAll();
+}
+
+function updateAll() {
+  prompts.forEach((p, i) => {
+    const el = document.getElementById('pt' + i);
+    if (el) el.textContent = renderText(p);
+  });
+}
+
+function toggle(i) {
+  const card = document.getElementById('pc' + i);
+  card.classList.toggle('open');
+}
+
+function copyP(i) {
+  const text = document.getElementById('pt' + i).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('cb' + i);
+    btn.textContent = '✓ Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="5" width="9" height="9" rx="1.5"/><path d="M3 11V3a1 1 0 011-1h8"/></svg> Copiar prompt`;
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+document.getElementById('nicho').addEventListener('change', function() {
+  document.getElementById('custom-wrap').style.display = this.value === 'personalizado' ? 'flex' : 'none';
+  updateAll();
+});
+document.getElementById('custom-nicho').addEventListener('input', updateAll);
+document.getElementById('rede').addEventListener('change', updateAll);
+
+buildCards();
+</script>
+</body>
+</html>
